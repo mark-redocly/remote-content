@@ -1,0 +1,30 @@
+name: 'Push to Redocly'
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed, edited]
+    branches:
+      - '**'
+  push:
+    branches:
+      - '**'
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: 'Push files and wait for deployment'
+        uses: redocly/reunite-push-action@add0e20c366805b2041a67b6daf8aa5e7f306cb9
+        with:
+          organization: 'testing_redocly'
+          project: 'mark-galant-playground'
+          mountPath: '/content/q'
+          files: 'README.md'
+          domain: 'https://app.cloud.redocly.com'
+        env:
+          REDOCLY_AUTHORIZATION: ${{ secrets.REDOCLY_AUTHORIZATION }}
