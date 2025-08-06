@@ -23,8 +23,7 @@ jobs:
         with:
           organization: 'testing_redocly'
           project: 'mark-galant-playground'
-          mountPath: '/content/q'
-          files: 'README.md'
+          mountPath: '/content33'
           domain: 'https://app.cloud.redocly.com'
         env:
           REDOCLY_AUTHORIZATION: ${{ secrets.REDOCLY_AUTHORIZATION }}
